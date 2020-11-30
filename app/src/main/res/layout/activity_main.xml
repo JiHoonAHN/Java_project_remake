@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     tools:context=".MainActivity">
     <LinearLayout
         android:id="@+id/layout"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
@@ -17,15 +19,16 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:onClick="OnClickHandler"
-            android:text="DatePickerDialog" />
+            android:text="날짜 보기" />
 
         <TextView
             android:id="@+id/textView_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="날짜 정보" />
+            android:text="날짜" />
     </LinearLayout>
 
 </LinearLayout>
