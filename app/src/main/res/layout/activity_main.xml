@@ -44,21 +44,24 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <EditText
-                android:text="내용"
+                android:hint="내용"
                 android:layout_width="345dp"
-                android:layout_marginLeft="33dp"
+                android:layout_gravity="center"
                 android:layout_height="400dp"
-                android:id="@+id/edtDiary"
+                android:id="@+id/et"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg3"
-                android:gravity="center" />
+                android:gravity="center"
+                android:lines="10"/>
             <Button
                 android:layout_marginTop="50dp"
-                android:id="@+id/btnSave"
+                android:id="@+id/btn_write"
                 android:layout_gravity="center"
-                android:text="새 스케줄 저장"
+                android:text="내용 저장"
+                android:textColor="#ffff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/et_bg4"
                 ></Button>
 
         </LinearLayout>
