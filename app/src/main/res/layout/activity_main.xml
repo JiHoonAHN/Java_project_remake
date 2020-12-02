@@ -16,21 +16,18 @@
         tools:layout_editor_absoluteX="8dp"
         android:layout_marginTop="30dp"
         tools:layout_editor_absoluteY="8dp">
-
-        <Button
-            android:id="@+id/button"
-            android:background="@drawable/et_bg2"
+        <DatePicker
+            android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:onClick="OnClickHandler"
-            android:text="날짜보기"
-            android:textColor="#ffffff"
-            android:textStyle="bold"
-            android:textSize="15dp"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/datePicker"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false"/>
+
 
         <TextView
-            android:id="@+id/textView_date"
+            android:id="@+id/viewDatePick"
             android:layout_width="350dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
@@ -47,15 +44,15 @@
                 android:hint="내용"
                 android:layout_width="345dp"
                 android:layout_gravity="center"
-                android:layout_height="400dp"
-                android:id="@+id/et"
+                android:layout_height="200dp"
+                android:id="@+id/edtDiary"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg3"
                 android:gravity="center"
                 android:lines="10"/>
             <Button
                 android:layout_marginTop="50dp"
-                android:id="@+id/btn_write"
+                android:id="@+id/btnSave"
                 android:layout_gravity="center"
                 android:text="내용 저장"
                 android:textColor="#ffff"
