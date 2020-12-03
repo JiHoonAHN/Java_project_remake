@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Calendar;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity { //MainActivity 는 Activit
     EditText edt;   //  edtDiary - 선택한 날짜의 내용을 쓰거나 기존에 저장된 내용이 있다면 보여주고 수정가능한 영역
     Button btnSave;   //  btnSave - 선택한 날짜의 일기 저장 및 수정(덮어쓰기) 버튼
     String fileName;   //  fileName - 돌고 도는 선택된 날짜의 파일 이름
+    Button btnDelete;
     @Override
     protected void onCreate(Bundle savedInstanceState) { // 앱 첫 시작 시 돌아감
         super.onCreate(savedInstanceState);
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity { //MainActivity 는 Activit
         viewDatePick = (TextView) findViewById(R.id.viewDatePick);//날짜를 보여준다.
         edt = (EditText) findViewById(R.id.edt);//내용을 입력 받을 부분
         btnSave = (Button) findViewById(R.id.btnSave);// 버튼 -> 기능: save 하는 버튼
-
+        btnDelete = (Button) findViewById(R.id.btnDelete);
         // 오늘 날짜를 받게해주는 Calender
         Calendar c = Calendar.getInstance();
         int c_Year = c.get(Calendar.YEAR);
@@ -57,6 +60,34 @@ public class MainActivity extends AppCompatActivity { //MainActivity 는 Activit
                 save(fileName);
             }
         });
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Delete(fileName);
+            }
+        });
+
+    }
+    @SuppressLint("WrongConstant")
+    public void Delete(String readDay){
+            edt.setText(null);//editText에 null을 넣음
+        FileOutputStream fos = null; //FileOutputStream 파일로 바이트 단위의 출력을 내보내는 클래스
+        try {
+            fos = openFileOutput(readDay, MODE_NO_LOCALIZED_COLLATORS); //MODE_WORLD_WRITEABLE -> 데이터베이스 열기 플래그: 설정되면 지역화된 콜라이어를 지원하지 않고 데이터베이스를 연다.
+            String content = edt.getText().toString();
+
+            // String.getBytes() = 스트링을 배열형으로 변환
+            fos.write(content.getBytes());
+            //fos.flush();
+            fos.close();
+
+            // getApplicationContext() = 현재 클래스.this
+            Toast.makeText(getApplicationContext(), "삭제완료", Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) { // Exception - 에러 종류 제일 상위 // FileNotFoundException , IOException
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();//error라고 토스트 메세지 보여줌
+        }
     }
 
     // EditText로 내용 파일 읽기
@@ -64,7 +95,7 @@ public class MainActivity extends AppCompatActivity { //MainActivity 는 Activit
 
         // 받은 날짜로 날짜 보여주는
         month += 1;
-        viewDatePick.setText(year + " - " + month + " - " + day);
+        viewDatePick.setText(year + "년 " + month + " 월  " + day+"일");
 
         fileName = year + "" + month + "" + day + ".txt";// 파일 이름을 만들어 준다 년+월+일.txt 이런 식
         FileInputStream fis = null;
@@ -74,18 +105,16 @@ public class MainActivity extends AppCompatActivity { //MainActivity 는 Activit
             byte[] fileData = new byte[fis.available()];
             fis.read(fileData);
             fis.close();
-
             String str = new String(fileData, "EUC-KR");
-            // 읽어서 토스트 메시지로 보여준다. -> 경고창이라고 생각하면 편하다.
             edt.setText(str);
-
             btnSave.setText("수정하기");
+            // 파일이 생성되면 버튼에 있는 텍스트를 수정하기로 바꾼다.
         } catch (Exception e) { // UnsupportedEncodingException , FileNotFoundException , IOException
             // 없어서 오류가 나면 내용이 없는 것 -> 내용을 쓰게 한다.
             // Toast.makeText(getApplicationContext(), "작성 X", Toast.LENGTH_SHORT).show();
-
             edt.setText("");
             btnSave.setText("새로 저장");
+            //파일이 생성되어있지 않다면 새로 저장이라고 문구가 뜬다.
             e.printStackTrace();
         }
 
@@ -114,5 +143,4 @@ public class MainActivity extends AppCompatActivity { //MainActivity 는 Activit
             Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();//error라고 토스트 메세지 보여줌
         }
     }
-
 }

@@ -52,17 +52,31 @@
                 android:background="@drawable/et_bg3"
                 android:gravity="center"
                 android:lines="10"/>
-            <Button
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
                 android:layout_marginTop="50dp"
+                android:gravity="center">
+            <Button
                 android:id="@+id/btnSave"
-                android:layout_gravity="center"
-                android:text="내용 저장"
-                android:textSize="15dp"
-                android:textColor="#ffff"
-                android:layout_width="wrap_content"
+                android:layout_width="153dp"
                 android:layout_height="wrap_content"
+
                 android:background="@drawable/et_bg4"
-                ></Button>
+                android:text="저장"
+                android:textColor="#ffff"
+                android:textSize="15dp"></Button>
+
+                <Button
+                    android:id="@+id/btnDelete"
+                    android:layout_width="153dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_bg5"
+                    android:text="삭제"
+                    android:textColor="#ffff"
+                    android:textSize="15dp"></Button>
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
