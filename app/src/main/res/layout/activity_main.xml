@@ -45,7 +45,7 @@
                 android:layout_width="345dp"
                 android:layout_gravity="center"
                 android:layout_height="200dp"
-                android:id="@+id/edtDiary"
+                android:id="@+id/edt"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/et_bg3"
                 android:gravity="center"
