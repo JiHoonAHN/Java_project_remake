@@ -7,4 +7,5 @@
 
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/68891494/101146415-4fe27900-365e-11eb-8a67-b536e88ca680.gif)
- - 안드로이드 스튜디오를 사용했습니다.
+
+- 안드로이드 스튜디오를 사용했습니다.
